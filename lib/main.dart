@@ -20,8 +20,8 @@ class HomePage extends StatelessWidget {
         child: Container(
           // color: Colors.red,
           padding: EdgeInsets.all(10),
-          height: 100,
-          width: 100,
+          height: 200,
+          width: 200,
           alignment: Alignment.center,
           decoration: BoxDecoration(
               color: Colors.red,
