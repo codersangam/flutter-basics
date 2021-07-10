@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,27 +7,49 @@ void main() {
   ));
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  var nameText = "Your Nice Name";
+  TextEditingController _textEditingController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(title: Text("MyAwesomeApp")),
       body: Center(
-          child: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            Container(
-              color: Colors.red,
-              padding: EdgeInsets.all(10),
-              height: 100,
-              width: 100,
-              alignment: Alignment.center,
+          child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Card(
+            child: Column(
+              children: <Widget>[
+                Image.asset("assets/images/featuredimage.png"),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  nameText,
+                  style: TextStyle(fontSize: 20),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextField(
+                    controller: _textEditingController,
+                    decoration: InputDecoration(
+                        hintText: "Enter Your Name",
+                        labelText: "Full Name",
+                        border: OutlineInputBorder()),
+                  ),
+                )
+              ],
             ),
-          ],
+          ),
         ),
       )),
       drawer: Drawer(
@@ -68,8 +88,11 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.edit),
+        onPressed: () {
+          nameText = _textEditingController.text;
+          setState(() {});
+        },
+        child: Icon(Icons.send),
       ),
     );
   }
